@@ -1,0 +1,65 @@
+<div mat-dialog-title><h1>Employee Form</h1></div>
+<form [formGroup]="empForm" (ngSubmit)="formSubmission()" >
+<div mat-dialog-content>
+    <div class="flex gap-5">
+    <mat-form-field apprerance="outline">
+        <mat-label>First Name</mat-label>
+        <input matInput type="text" placeholder="Ex.Tony" formControlName="firstName">
+      </mat-form-field>
+    <mat-form-field apprerance="outline">
+        <mat-label>Last Name</mat-label>
+        <input matInput type="text" placeholder="Ex.Stark" formControlName="lastName">
+      </mat-form-field>
+    </div>
+    <div class="flex gap-5">
+    <mat-form-field apprerance="outline">
+        <mat-label>Email</mat-label>
+        <input matInput type="email" placeholder="abc@gmail.com" formControlName="email">
+      </mat-form-field>
+      <mat-form-field apperance="outline">
+        <mat-label>DOB</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dob">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <div class="flex">
+        <mat-radio-group aria-label="Select an option" formControlName="gender">
+            <mat-label><b>Gender</b></mat-label>
+            <mat-radio-button value="male">Male</mat-radio-button>
+            <mat-radio-button value="female">Female</mat-radio-button>
+            <mat-radio-button value="others">Others</mat-radio-button>
+          </mat-radio-group>
+    </div>
+    <div class="flex gap-5">   
+<mat-form-field apperance ="outline">
+  <mat-label >Educational Qualification</mat-label>
+  <mat-select formControlName="educationalQualification" >
+    <mat-option  *ngFor ="let val of educationalQualification" [value]="val">{{val}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field apprerance="outline">
+    <mat-label>Company</mat-label>
+    <input matInput type="text" placeholder="Ex.Google" formControlName="company">
+  </mat-form-field>
+    </div>
+
+<div class="flex gap-5">
+    <mat-form-field apprerance="outline">
+        <mat-label>Experience</mat-label>
+        <input matInput  placeholder="Ex.7" type="number" formControlName="experience">
+      </mat-form-field>
+      <mat-form-field apprerance="outline">
+        <mat-label>CTC</mat-label>
+        <input matInput placeholder="Ex.400000" type="number" formControlName="ctc">
+        <mat-hint>in rupees</mat-hint>
+      </mat-form-field>
+</div>
+</div>
+<div mat-dialog-actions class="px-6 gap-3">
+    <button class="flex-1" mat-raised-button type="button" (click)="close()">Cancel</button>
+    <button class="flex-1" mat-raised-button color="primary" type="submit" [disabled]="empForm.pristine && !empForm.invalid" >{{data?'Update':'Save'}}</button>
+</div>
+</form>
